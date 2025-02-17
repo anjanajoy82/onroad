@@ -1,0 +1,43 @@
+{% load static %}
+{% include 'header.html' %}
+<link rel="stylesheet" href="{% static 'css/users.css' %}">
+<body>
+    <table>
+        <tr>
+            <th>SINO</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Contact Number</th>
+            <th>license no</th>
+            <th>Actions</th>
+        </tr>
+        <!-- Example row -->
+        {% if mechanics %}
+            {% for mechanic in mechanics %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ mechanic.first_name }}</td>
+                <td>{{ mechanic.last_name }}</td>
+                <td>{{ mechanic.username }}</td>
+                <td>{{ mechanic.email }}</td>
+                <td>{{ mechanic.contact }}</td>
+                <td>{{ mechanic.licenseno }}</td>
+                {% if mechanic.is_approved %}
+                <td><a href="{% url 'delete_mechanic' mechanic.id %}" class="btn delete-btn">Delete</a></td>
+                {% else %}
+                <td><a href="{% url 'approve_mech' mechanic.id %}" class="btn approve-btn" >Approve</a>
+                <a href="{% url 'reject_mech' mechanic.id %}" class="btn reject-btn">Reject</a></td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        {% else %}
+            <tr>
+                <td colspan="7" style="text-align: center;">No users found.</td>
+            </tr>
+        {% endif %}
+    </table>
+</body>
+</html>
+{% include 'footer.html' %}

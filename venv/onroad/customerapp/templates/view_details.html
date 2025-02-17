@@ -1,0 +1,39 @@
+{% load static %}
+{% include 'header.html' %}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+
+<body>
+  <div class="profile-card">
+    <div class="profile-header">
+      {% if mechanic.image %}
+      <img src="{{ mechanic.image.url }}" alt="{{mechanic.username}}">
+      {% else %}
+      <img src="{% static 'images/new2.jpeg' %}" alt="User Profile Picture">
+      {% endif %}
+      <h2>{{ mechanic.first_name }} {{ mechanic.last_name }}</h2>
+    </div>
+
+    <p id="Username">{{ mechanic.username }}</p>
+    <p id="Email">{{ mechanic.email }}</p>
+    <p id="Contact">{{ mechanic.contact }}</p>
+    
+    
+    <p id="Location"><a href="{{ mechanic.location }}">View Location Map </a></p>
+    <p id="Licenseno">{{ mechanic.licenseno }}</p>
+    {% if mechanic.experience %}
+    <p id="Experience">{{ mechanic.experience }} Years</p>
+    {% endif %}
+    {% if mechanic.specialization %}
+    <p id="Specialization">{{ mechanic.specialization }}</p>
+    {% endif %}
+
+
+
+    <a href="/edit_mechanic_profile"><button class="edit-button">Edit Profile</button></a>
+  </div>
+
+ 
+</body>
+</html>
+
+{% include 'footer.html' %}

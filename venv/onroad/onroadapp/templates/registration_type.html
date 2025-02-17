@@ -1,0 +1,20 @@
+{% load static %}
+{% include 'header.html' %}
+
+<link rel="stylesheet" href="{% static 'css/registration_type.css' %}">
+<body>
+    <section class="hero-wrap" style="background-image: url('../static/images/banner.jpg');">
+        <div class="overlay"></div>
+            <div class="type-container">
+                <h1>Select Your Registration Type</h1>
+                <div class="button-container">
+                    <a href="/registration" class="role-button">Regular User</a>
+                    <a href="/mechreg" class="role-button">Mechanic</a>
+                    <a href="/petrolreg" class="role-button">Petrol Pumb</a>
+                    <a href="" class="role-button">Delivery Agent</a>
+                </div>
+            </div>
+
+    </section>
+</body>
+{% include 'footer.html' %}

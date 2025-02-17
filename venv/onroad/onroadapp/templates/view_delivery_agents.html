@@ -1,0 +1,37 @@
+{% load static %}
+{% include 'header.html' %}
+<link rel="stylesheet" href="{% static 'css/users.css' %}">
+<body>
+    <table>
+        <tr>
+            <th>SINO</th>
+           
+            <th>Username</th>
+            <th>Email</th>
+            <th>Contact Number</th>
+            <th>Actions</th>
+            
+        </tr>
+        <!-- Example row -->
+        {% if agents %}
+            {% for agent in agents %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                
+                <td>{{ agent.username }}</td>
+                <td>{{ agent.email }}</td>
+                <td>{{ agent.contact }}</td>
+                <td><a href="{% url 'delete_agent' agent.id %}" class="btn delete-btn" >Delete</a></td>
+                
+                
+            </tr>
+            {% endfor %}
+        {% else %}
+            <tr>
+                <td colspan="7" style="text-align: center;">No users found.</td>
+            </tr>
+        {% endif %}
+    </table>
+</body>
+</html>
+{% include 'footer.html' %}

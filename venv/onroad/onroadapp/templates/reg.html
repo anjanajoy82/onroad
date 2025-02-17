@@ -1,0 +1,35 @@
+{% load static %}
+{% include 'header.html' %}
+<link rel="stylesheet" href="{% static 'css/reg.css' %}">
+<body>
+    <section class="hero-wrap " style="background-image: url('../static/images/banner.jpg'); background-position: center; background-repeat: no-repeat; background-size: cover;" data-section="home">
+        <div class="overlay"></div>
+    <div class="registration-container">
+        <form action="" method="POST" enctype="multipart/form-data">
+
+            <h2>{{title}}</h2>
+            {% csrf_token %}
+            
+            {{ form.non_field_errors }}
+
+            {% for field in form %}
+                <div class="form-group">
+                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                    {{ field }}
+                    {% if field.errors %}
+                        <div class="error-list">
+                            {% for error in field.errors %}
+                                <p class="error">{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+            
+            <button type="submit">{{ title }}</button>
+        </form>
+    </div>
+    <section>
+</body>
+
+{% include 'footer.html' %}

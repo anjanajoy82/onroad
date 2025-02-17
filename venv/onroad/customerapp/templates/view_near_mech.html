@@ -1,0 +1,35 @@
+{% load static %}
+{% include 'header.html' %}
+<link rel="stylesheet" href="{% static 'css/view_mech.css' %}">
+
+<body>
+    <div class="mechanic-container">
+        {% if mechanics %}
+            {% for mechanic in mechanics %}
+                <div class="mechanic-card">
+                    <div class="card-content">
+                        <!-- Mechanic Profile Image -->
+                        {% if mechanic.image %}
+                        <img src="{{ mechanic.image.url }}" alt="Profile Image" class="profile-img">
+                        {% else %}
+                        <img src="{% static 'images/new2.jpeg' %}" alt="Profile Image" class="profile-img">
+                        {% endif %}
+                        <!-- Mechanic Details -->
+                        <h2>{{ mechanic.first_name }} {{ mechanic.last_name }}</h2>
+                        <p><strong>Username:</strong> {{ mechanic.username }}</p>
+                        <p><strong>Email:</strong> {{ mechanic.email }}</p>
+                        <p><strong>Contact:</strong> {{ mechanic.contact }}</p>
+                        <p><strong>License No:</strong> {{ mechanic.licenseno }}</p>
+                        
+                        <!-- View Details Button -->
+                        <a href="/view_details"><button class="edit-button">View Details</button></a>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p class="no-users">No mechanics found.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
+{% include 'footer.html' %}

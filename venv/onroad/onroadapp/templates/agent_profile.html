@@ -1,0 +1,31 @@
+{% load static %}
+{% include 'header.html' %}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+
+<body>
+  <div class="profile-card">
+    <div class="profile-header">
+      {% if agent.image %}
+      <img src="{{ agent.image.url }}" alt="{{agent.username}}">
+      {% else %}
+      <img src="{% static 'images/new2.jpeg' %}" alt="User Profile Picture">
+      {% endif %}
+     
+    </div>
+
+    <p id="Username">{{ agent.username }}</p>
+    <p id="Email">{{ agent.email }}</p>
+    <p id="Contact">{{ agent.contact }}</p>
+    
+    
+    
+
+
+    
+  </div>
+
+ 
+</body>
+</html>
+
+{% include 'footer.html' %}

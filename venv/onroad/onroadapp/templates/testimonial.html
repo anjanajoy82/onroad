@@ -1,0 +1,113 @@
+{% load static %}
+{% include 'header.html' %}
+      
+      <!-- testimonial -->
+      <div class="testimonial">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="titlepage">
+                     <h2>Testimonials</h2>
+                     <p>Our customers share their experiences of quick assistance and reliable service on the road.</p>
+                  </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-md-12">
+                  <div id="myCarousel" class="carousel slide testimonial_Carousel" data-ride="carousel">
+                     <ol class="carousel-indicators">
+                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#myCarousel" data-slide-to="1"></li>
+                        <li data-target="#myCarousel" data-slide-to="2"></li>
+                     </ol>
+                     <div class="carousel-inner">
+                        <div class="carousel-item active">
+                           <div class="container">
+                              <div class="carousel-caption">
+                                 <div class="row">
+                                    <div class="col-md-6 margin_boot">
+                                       <div class="test_box">
+                                          <i><img src="{% static 'images/tes.jpg' %}" alt="#"/></i>
+                                          <h4>Ravi Kumar</h4>
+                                          <span>(Vehicle Breakdown Assistance)</span>
+                                          <p>"I was stuck on the highway, but thanks to the breakdown assistance service, a mechanic arrived within minutes. The service was prompt and efficient!"</p>
+                                       </div>
+                                    </div>
+                                    <div class="col-md-6 margin_boot">
+                                       <div class="test_box">
+                                          <i><img src="{% static 'images/tes1.jpg' %}" alt="#"/></i>
+                                          <h4>Riyas Shah</h4>
+                                          <span>(Fuel Demand Service)</span>
+                                          <p>"I ran out of fuel on a remote road, but the fuel delivery service came to my rescue in no time. Truly a lifesaver when you're in a pinch!"</p>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="carousel-item">
+                           <div class="container">
+                              <div class="carousel-caption">
+                                 <div class="row">
+                                    <div class="col-md-6 margin_boot">
+                                       <div class="test_box">
+                                          <i><img src="{% static 'images/tes.jpg' %}" alt="#"/></i>
+                                          <h4>Samir Patel</h4>
+                                          <span>(Emergency Fuel Supply)</span>
+                                          <p>"Amazing service! The fuel delivery arrived within 30 minutes and helped me get back on the road quickly. Very professional!"</p>
+                                       </div>
+                                    </div>
+                                    <div class="col-md-6 margin_boot">
+                                       <div class="test_box">
+                                          <i><img src="{% static 'images/tes1.jpg' %}" alt="#"/></i>
+                                          <h4>Aljo Verma</h4>
+                                          <span>(Breakdown Assistance)</span>
+                                          <p>"I was worried about my car breaking down on a lonely stretch, but thanks to the real-time mechanic tracker, I got help in no time. Highly recommend this service!"</p>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="carousel-item">
+                           <div class="container">
+                              <div class="carousel-caption">
+                                 <div class="row">
+                                    <div class="col-md-6 margin_boot">
+                                       <div class="test_box">
+                                          <i><img src="{% static 'images/tes.jpg' %}" alt="#"/></i>
+                                          <h4>Arvind Rao</h4>
+                                          <span>(Vehicle Breakdown)</span>
+                                          <p>"I had an engine problem during a long drive, and the breakdown assistance arrived quickly. The mechanic was skilled, and I was back on the road in no time!"</p>
+                                       </div>
+                                    </div>
+                                    <div class="col-md-6 margin_boot">
+                                       <div class="test_box">
+                                          <i><img src="{% static 'images/tes1.jpg' %}" alt="#"/></i>
+                                          <h4>Soni Gupta</h4>
+                                          <span>(Fuel Assistance)</span>
+                                          <p>"I didn't know how to get fuel while stranded. The mobile fuel delivery service arrived promptly and saved me from a stressful situation. Very convenient!"</p>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <a class="carousel-control-prev" href="/testimonial" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                     </a>
+                     <a class="carousel-control-next" href="/testimonial" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                     </a>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      
+      <!-- end testimonial -->
+      </div>
+      {% include 'footer.html' %}
