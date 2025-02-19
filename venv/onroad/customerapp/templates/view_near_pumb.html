@@ -1,0 +1,32 @@
+{% load static %}
+{% include 'header.html' %}
+<link rel="stylesheet" href="{% static 'css/users.css' %}">
+
+<body>
+    <div class="card-container">
+        <!-- Example card -->
+        {% if petrols %}
+            {% for petrol in petrols %}
+                <div class="petrol-card">
+                    <div class="card-header">
+                        <h3>{{ petrol.pump_name }}</h3>
+                        <p class="status">Status: Active</p>  <!-- You can modify the status based on conditions -->
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Username:</strong> {{ petrol.username }}</p>
+                        <p><strong>Email:</strong> {{ petrol.email }}</p>
+                        <p><strong>Contact:</strong> {{ petrol.contact }}</p>
+                        <p><strong>Place:</strong> {{ petrol.place }}</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="{% url 'delete_petrol' petrol.id %}" class="btn delete-btn">Delete</a>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p class="no-data">No petrol pumps found.</p>
+        {% endif %}
+    </div>
+</body>
+
+{% include 'footer.html' %}

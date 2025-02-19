@@ -1,0 +1,25 @@
+{% load static %}
+{% include 'header.html' %}
+
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+<body> 
+    <section class="hero-wrap js-fullheight" style="background-image: url('../static/images/banner.jpg');" data-section="home">
+        <div class="overlay"></div>
+    <div class="registration-container">
+    
+    <h2>Request Form</h2>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}   
+        <button type="submit">Add Request</button>
+        
+        
+        
+        
+    </form>
+</div>
+    </section>
+</html>
+<br>
+<br>
+{% include 'footer.html' %}

@@ -1,0 +1,34 @@
+{% load static %}
+{% include 'header.html' %}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+
+<body>
+  <div class="profile-card">
+    <div class="profile-header">
+      {% if petrol.image %}
+      <img src="{{ petrol.image.url }}" alt="{{petrol.pump_name}}">
+      {% else %}
+      <img src="{% static 'images/new2.jpeg' %}" alt="User Profile Picture">
+      {% endif %}
+      <h2>{{ petrol.pump_name }}</h2>
+    </div>
+    <p id="Name">{{ petrol.pump_name }}</p>
+    <p id="Username">{{ petrol.username }}</p>
+    <p id="Email">{{ petrol.email }}</p>
+    <p id="Contact">{{ petrol.contact }}</p>
+    <p id="Place">{{ petrol.place }}</p>
+    
+    
+    <p id="Location"><a href="{{ petrol.location }}">View Location Map </a></p>
+    
+
+
+
+    <a href="{% url 'pumbbooking' petrol.id %}"><button class="edit-button">Book</button></a>
+  </div>
+
+ 
+</body>
+</html>
+
+{% include 'footer.html' %}
