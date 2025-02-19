@@ -19,7 +19,9 @@
     
     
     <p id="Location"><a href="{{ mechanic.location }}">View Location Map </a></p>
+    {% if mechanic.licenseno %}
     <p id="Licenseno">{{ mechanic.licenseno }}</p>
+    {% endif %}
     {% if mechanic.experience %}
     <p id="Experience">{{ mechanic.experience }} Years</p>
     {% endif %}
@@ -29,7 +31,7 @@
 
 
 
-    <a href="/edit_mechanic_profile"><button class="edit-button">Edit Profile</button></a>
+    <a href="{% url 'mechbooking' mechanic.id %}"><button class="edit-button">Book</button></a>
   </div>
 
  

@@ -315,13 +315,14 @@ class PetrolForm(forms.ModelForm):
 class PetrolEditProfileForm(forms.ModelForm):
     class Meta:
         model=Register
-        fields=['pump_name','username','place','image','email','location']
+        fields=['pump_name','username','place','image','email','contact','location']
         widgets={
             'pumb_name':forms.TextInput(attrs={'id':'pumb_name','name':'pumb_name'}),
             'username':forms.TextInput(attrs={'id':'username','name':'username'}),
             'place':forms.TextInput(attrs={'id':'place','name':'place'}),
             'image':forms.FileInput(attrs={'id':'image','name':'image'}),
             'email':forms.EmailInput(attrs={'id':'email','name':'email',}),
+            'contact':forms.TextInput(attrs={'id':'contact','name':'contact',}),
             'location':forms.URLInput(attrs={'id':'location','name':'location','placeholder': 'Location URL '}),        }
         labels={
             'pumb_name':'PUMB NAME',
@@ -329,6 +330,7 @@ class PetrolEditProfileForm(forms.ModelForm):
             'place':'PLACE',
             'image':'IMAGE',
             'email':'EMAIL',
+            'contact':'contact',
             'location':'LOCATION',
         }
         help_texts={

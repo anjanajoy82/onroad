@@ -54,7 +54,7 @@
 }
 
 .btn.view-btn:hover {
-    background: #0056b3;
+    background: #141516;
 }
 
 .no-users {
@@ -63,3 +63,26 @@
     color: #777;
     margin-top: 20px;
 }
+.edit-button {
+    background-color: #e2b503d2; /* Change button background color */
+    color: white; /* Change text color */
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.edit-button:hover {
+    background-color: #937801; /* Darker shade on hover */
+}
+
+/* Change link color */
+a {
+    text-decoration: none; /* Removes underline */
+    color: #f1dd03; /* Change link color */
+}
+
+a:hover {
+    color: #00090f; /* Change link color on hover */
+}
+

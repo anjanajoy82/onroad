@@ -8,6 +8,7 @@
             <th>Name</th>
             <th>Username</th>
             <th>Email</th>
+            <th>Contact</th>
             <th>Place</th>
             <th>Actions</th>
         </tr>
@@ -19,6 +20,7 @@
                 <td>{{ petrol.pump_name }}</td>
                 <td>{{ petrol.username }}</td>
                 <td>{{ petrol.email }}</td>
+                <td>{{ petrol.contact }}</td>
                 <td>{{ petrol.place }}</td>
                 <td><a href="{% url 'delete_petrol' petrol.id %}" class="btn delete-btn" >Delete</a></td>
             </tr>

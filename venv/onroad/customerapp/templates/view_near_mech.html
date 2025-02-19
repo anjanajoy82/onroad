@@ -19,10 +19,11 @@
                         <p><strong>Username:</strong> {{ mechanic.username }}</p>
                         <p><strong>Email:</strong> {{ mechanic.email }}</p>
                         <p><strong>Contact:</strong> {{ mechanic.contact }}</p>
+                        {% if mechanic.licenseno %}
                         <p><strong>License No:</strong> {{ mechanic.licenseno }}</p>
-                        
+                        {% endif %}
                         <!-- View Details Button -->
-                        <a href="/view_details"><button class="edit-button">View Details</button></a>
+                        <a href="{% url 'view_details' mechanic.id %}"><button class="edit-button">View Details</button></a>
                     </div>
                 </div>
             {% endfor %}
