@@ -1,32 +1,36 @@
 {% load static %}
 {% include 'header.html' %}
-<link rel="stylesheet" href="{% static 'css/users.css' %}">
+<link rel="stylesheet" href="{% static 'css/view_mech.css' %}">
 
 <body>
-    <div class="card-container">
-        <!-- Example card -->
-        {% if petrols %}
-            {% for petrol in petrols %}
-                <div class="petrol-card">
-                    <div class="card-header">
-                        <h3>{{ petrol.pump_name }}</h3>
-                        <p class="status">Status: Active</p>  <!-- You can modify the status based on conditions -->
-                    </div>
-                    <div class="card-body">
-                        <p><strong>Username:</strong> {{ petrol.username }}</p>
-                        <p><strong>Email:</strong> {{ petrol.email }}</p>
-                        <p><strong>Contact:</strong> {{ petrol.contact }}</p>
-                        <p><strong>Place:</strong> {{ petrol.place }}</p>
-                    </div>
-                    <div class="card-footer">
-                        <a href="{% url 'delete_petrol' petrol.id %}" class="btn delete-btn">Delete</a>
+    <div class="mechanic-container">
+        {% if mechanics %}
+            {% for mechanic in mechanics %}
+                <div class="mechanic-card">
+                    <div class="card-content">
+                        <!-- Mechanic Profile Image -->
+                        {% if mechanic.image %}
+                        <img src="{{ mechanic.image.url }}" alt="Profile Image" class="profile-img">
+                        {% else %}
+                        <img src="{% static 'images/new2.jpeg' %}" alt="Profile Image" class="profile-img">
+                        {% endif %}
+                        <!-- Mechanic Details -->
+                        <h2>{{ mechanic.first_name }} {{ mechanic.last_name }}</h2>
+                        <p><strong>Username:</strong> {{ mechanic.username }}</p>
+                        <p><strong>Email:</strong> {{ mechanic.email }}</p>
+                        <p><strong>Contact:</strong> {{ mechanic.contact }}</p>
+                        {% if mechanic.licenseno %}
+                        <p><strong>License No:</strong> {{ mechanic.licenseno }}</p>
+                        {% endif %}
+                        <!-- View Details Button -->
+                        <a href="{% url 'view_pumbdetails' mechanic.id %}"><button class="edit-button">View Details</button></a>
                     </div>
                 </div>
             {% endfor %}
         {% else %}
-            <p class="no-data">No petrol pumps found.</p>
+            <p class="no-users">No mechanics found.</p>
         {% endif %}
     </div>
 </body>
-
+</html>
 {% include 'footer.html' %}

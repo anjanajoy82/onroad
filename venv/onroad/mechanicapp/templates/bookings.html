@@ -20,22 +20,24 @@
                         <p><strong>Current Location:</strong><a href="{{ booking.current_loc }}">View Location</a></p>
                         <p><strong>Vehicle Type:</strong> {{ booking.vehicle_type }}</p>
                         <p><strong>Contact:</strong> {{ booking.user.contact }}</p>
-                        {% if booking.status != "Rejected" and  booking.status != "Completed" %}
-                <td>
-                    {{ booking.status }}
-                    <a href="{% url 'update_status' booking.id %}" class="btn btn-success approve-btn" >Update Status</a>
-                </td>
-                {% elif booking.status == "Completed" %}
-                <td>
-                    Completed
-                </td>
-                
-                {% elif booking.status == "Rejected" %}
-                <td>Rejected</td>
-                {% else %}
-                <td><a href="{% url 'approve_booking' booking.id %}" class="btn btn-success approve-btn" >Approve</a>
-                <a href="{% url 'reject_booking' booking.id %}" class="btn btn-danger reject-btn">Reject</a></td>
-                {% endif %}
+                        {% if booking.status == "Booked" %}
+                        <td>
+                            <a href="{% url 'approve_booking' booking.id %}" class="btn btn-success approve-btn" >Approve</a>
+                            <a href="{% url 'reject_booking' booking.id %}" class="btn btn-danger reject-btn">Reject</a>
+                        </td>
+                        {% elif booking.status == "Completed" %}
+                            <td>
+                                Completed
+                            </td>
+                            
+                        {% elif booking.status == "Rejected" %}
+                            <td>Rejected</td>
+                        {% else %}
+                        <td>
+                            {{ booking.status }}
+                            <a href="{% url 'mech_update_status' booking.id %}" class="btn btn-success approve-btn" >Update Status</a>
+                        </td>
+                        {% endif %}
                     </div>
                 </div>
             {% endfor %}

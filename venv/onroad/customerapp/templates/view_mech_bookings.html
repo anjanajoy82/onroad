@@ -1,0 +1,34 @@
+{% load static %}
+{% include 'header.html' %}
+<link rel="stylesheet" href="{% static 'css/view_mech.css' %}">
+
+<body>
+    <div class="mechanic-container">
+        {% if bookings %}
+            {% for booking in bookings %}
+                <div class="mechanic-card">
+                    <div class="card-content">
+                        {% if booking.mechanic.image %}
+                        <img src="{{ booking.mechanic.image.url }}" alt="Profile Image" class="profile-img">
+                        {% else %}
+                        <img src="{% static 'images/new2.jpeg' %}" alt="Profile Image" class="profile-img">
+                        {% endif %}
+                        <!-- Mechanic Details -->
+                        <h2>{{ booking.mechanic.first_name }} {{ booking.mechanic.last_name }}</h2>
+                        <p><strong>name:</strong> {{ booking.name }}</p>
+                        <p><strong>Description:</strong> {{ booking.description }}</p>
+                        <p><strong>Current Location:</strong><a href="{{ booking.current_loc }}">View Location</a></p>
+                        <p><strong>Vehicle Type:</strong> {{ booking.vehicle_type }}</p>
+                        <p><strong>Contact:</strong> {{ booking.mechanic.contact }}</p>
+                        <p><strong>Booking Status:</strong> {{ booking.status }}</p>
+                        <p>Booked On: {{ booking.booked_at }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p class="no-users">No Bookings found.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
+{% include 'footer.html' %}

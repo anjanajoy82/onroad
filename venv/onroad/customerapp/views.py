@@ -27,7 +27,7 @@ def view_pumbdetails(request,id):
 
 def view_near_pump(request):
     pumps=Register.objects.filter(usertype="petrol", is_approved=True)
-    return render(request,'view_near_mech.html',{'mechanics':pumps})
+    return render(request,'view_near_pumb.html',{'mechanics':pumps})
 
 def booking(request,id):
     mech = Register.objects.get(id=id)
@@ -48,52 +48,7 @@ def booking(request,id):
 
     return render(request, 'mechbooking.html', {'form': form})
 
-def view_booking(request):
-    user=request.user
-    bookings=MechBooking.objects.filter(mechanic=user)
-    return render(request,'bookings.html',{'bookings':bookings})
 
-
-def approve_booking(request,id):
-    booking=MechBooking.objects.get(id=id)
-    booking.status = "Approved"
-    subject="Booking Approval Notification"
-    message=f"Dear {booking.user.username} Your booking is being approved. Please wait while we reach there with neccessary tools...."
-    email_from=[booking.mechanic.email]
-    email_to=[booking.user.email]
-    send_mail(subject, message, email_from, email_to)
-    messages.success(request,'Booking Approved and send mail successfully.',extra_tags="success")
-    return redirect('bookings')
-
-
-def reject_booking(request,id):
-    booking=MechBooking.objects.get(id=id)
-    booking.status = "Rejected"
-    subject="Booking Rejection Notification"
-    message=f"Dear {booking.user.username} Your booking is being rejected because of other emergencies.. Please contact other mechanics....."
-    email_from=[booking.mechanic.email]
-    email_to=[booking.user.email]
-    send_mail(subject, message, email_from, email_to)
-    messages.success(request,'Booking rejected and send mail successfully.',extra_tags="success")
-    return redirect('bookings')
-
-
-def update_status(request,id):
-    booking=MechBooking.objects.get(id=id)
-    if booking.status == "Approved":
-        booking.status = "On the way"
-        booking.save()
-    elif booking.status == "On the way":
-        booking.status = "Working"
-        booking.save()
-    elif booking.status == "Working":
-        booking.status = "Completed"
-        booking.save()
-    else:
-        booking.status="Not completed"
-        booking.save()
-    return redirect('bookings')
-    
 
 def pumb_booking(request,id):
     pumb = Register.objects.get(id=id)
@@ -112,50 +67,16 @@ def pumb_booking(request,id):
     else:
         form = PetrolForm()
 
-    return render(request, 'pumpbooking.html', {'form': form})
+    return render(request, 'pumbbooking.html', {'form': form})
 
-def view_pumbbooking(request):
+
+def view_mech_bookings(request):
     user=request.user
-    bookings=PetrolBooking.objects.filter(petrol=user)
-    return render(request,'bookings_pumb.html',{'bookings_pumb':bookings_pumb})
+    bookings=MechBooking.objects.filter(user=user)
+    return render(request,'view_mech_bookings.html',{'bookings':bookings})
 
-def pumb_approve_booking(request,id):
-    booking=PetrolBooking.objects.get(id=id)
-    booking.status = "Approved"
-    subject="Booking Approval Notification"
-    message=f"Dear {booking.user.username} Your booking is being approved. Please wait while we reach there with neccessary tools...."
-    email_from=[booking.petrol.email]
-    email_to=[booking.user.email]
-    send_mail(subject, message, email_from, email_to)
-    messages.success(request,'Booking Approved and send mail successfully.',extra_tags="success")
-    return redirect('bookings_pumb')
+def view_pumb_bookings(request):
+    user=request.user
+    bookings=PetrolBooking.objects.filter(user=user)
+    return render(request,'view_pumb_bookings.html',{'bookings':bookings})
 
-
-def pumb_reject_booking(request,id):
-    booking=PetrolBooking.objects.get(id=id)
-    booking.status = "Rejected"
-    subject="Booking Rejection Notification"
-    message=f"Dear {booking.user.username} Your booking is being rejected because of other emergencies.. Please contact other mechanics....."
-    email_from=[booking.petrol.email]
-    email_to=[booking.user.email]
-    send_mail(subject, message, email_from, email_to)
-    messages.success(request,'Booking rejected and send mail successfully.',extra_tags="success")
-    return redirect('bookings_pumb')
-
-
-def pumb_update_status(request,id):
-    booking=PetrolBooking.objects.get(id=id)
-    if booking.status == "Approved":
-        booking.status = "On the way"
-        booking.save()
-    elif booking.status == "On the way":
-        booking.status = "Working"
-        booking.save()
-    elif booking.status == "Working":
-        booking.status = "Completed"
-        booking.save()
-    else:
-        booking.status="Not completed"
-        booking.save()
-    return redirect('bookings_pumb')
-    

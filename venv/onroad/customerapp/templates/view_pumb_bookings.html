@@ -1,0 +1,39 @@
+{% load static %}
+{% include 'header.html' %}
+<link rel="stylesheet" href="{% static 'css/view_mech.css' %}">
+
+<body>
+    <div class="petrol-container">
+        {% if bookings %}
+            {% for booking in bookings %}
+                <div class="petrol-card">
+                    <div class="card-content">
+                        {% if booking.petrol.image %}
+                        <img src="{{ booking.petrol.image.url }}" alt="Profile Image" class="profile-img">
+                        {% else %}
+                        <img src="{% static 'images/new2.jpeg' %}" alt="Profile Image" class="profile-img">
+                        {% endif %}
+                        <!-- Mechanic Details -->
+                        <h2>{{ booking.petrol.first_name }} {{ booking.petrol.last_name }}</h2>
+                        <p><strong>name:</strong> {{ booking.name }}</p>
+                        <p><strong>Description:</strong> {{ booking.description }}</p>
+                        <p><strong>Current Location:</strong><a href="{{ booking.current_loc }}">View Location</a></p>
+                        <p><strong>Vehicle Type:</strong> {{ booking.vehicle_type }}</p>
+                        <p><strong>Contact:</strong> {{ booking.petrol.contact }}</p>
+                        <p><strong>Fuel Type:</strong> {{ booking.petrol.fuel_type }}</p>
+                        <p><strong>Fuel Quantity:</strong> {{ booking.petrol.fuel_quantity }}</p>
+                        <p><strong>Request Time:</strong> {{ booking.petrol.request_time }}</p>
+                        <p><strong>Urgency:</strong> {{ booking.petrol.urgency }}</p>
+                        <p><strong>Payment Method:</strong> {{ booking.petrol.payment_method }}</p>
+                        <p><strong>Booking Status:</strong>{{ booking.status }}</p>
+                        <p>{{ booking. }}</p>
+                        </div>
+                        </div>
+            {% endfor %}
+        {% else %}
+            <p class="no-users">No Bookings found.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
+{% include 'footer.html' %}

@@ -1,4 +1,5 @@
 from django.db import models
+
 from onroadapp.models import *
 
 # Create your models here.
@@ -10,22 +11,24 @@ class MechBooking(models.Model):
     current_loc=models.URLField(max_length=255, null=True)
     vehicle_type=models.CharField(max_length=50,null=True)
     status=models.CharField(max_length=10,default="Pending")
+    booked_at = models.DateTimeField(auto_now_add=True, null=True)
+
 
 
 
 class PetrolBooking(models.Model):
     # Linking to the same user and mechanic models
-    user = models.ForeignKey(Register, on_delete=models.CASCADE, null=True, related_name='petrol_user')
-    mechanic = models.ForeignKey(Register, on_delete=models.CASCADE, null=True, related_name='petrol_mechanic')
-    # Fields for fuel request
+    user = models.ForeignKey(Register, on_delete=models.CASCADE, null=True, related_name='customer')
+    petrol = models.ForeignKey(Register, on_delete=models.CASCADE, null=True, related_name='petrol')
+    # Fields for fuel request 
     name = models.CharField(max_length=50, null=True)
     description = models.CharField(max_length=500, null=True)
     current_loc = models.URLField(max_length=255, null=True)
-    vehicle_type=models.CharField(max_length=50,null=True)
+    vehicle_type = models.CharField(max_length=50,null=True)
     # Additional fields specific to petrol booking
     fuel_type = models.CharField(max_length=50, null=True)
     fuel_quantity = models.DecimalField(max_digits=5, decimal_places=2, null=True)  # Liters or Gallons
-    request_time = models.DateTimeField(null=True)  # Preferred time for delivery
+    booked_at = models.DateTimeField(auto_now_add=True,null=True)  # Preferred time for delivery
     urgency_choices = [
         ('immediate', 'Immediate'),
         ('can_wait', 'Can Wait'),

@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'onroadapp',
     'customerapp',
+    'mechanicapp',
+    'petrolpumbapp',
 ]
 
 MIDDLEWARE = [

@@ -10,16 +10,14 @@ from django.core.mail import send_mail
 import secrets,string
 from onroadapp.models import *
 
-
 # Create your views here.
-def view_booking(request):
+def view_pumbbooking(request):
     user=request.user
-    bookings=MechBooking.objects.filter(mechanic=user)
-    return render(request,'bookings.html',{'bookings':bookings})
+    bookings=PetrolBooking.objects.filter(petrol=user)
+    return render(request,'bookings_pumb.html',{'bookings':bookings})
 
-
-def approve_booking(request,id):
-    booking=MechBooking.objects.get(id=id)
+def pumb_approve_booking(request,id):
+    booking=PetrolBooking.objects.get(id=id)
     booking.status = "Approved"
     booking.save()
     subject="Booking Approval Notification"
@@ -28,24 +26,24 @@ def approve_booking(request,id):
     email_to=[booking.user.email]
     send_mail(subject, message, email_from, email_to,fail_silently=True)
     messages.success(request,'Booking Approved and send mail successfully.',extra_tags="success")
-    return redirect('bookings')
+    return redirect('bookings_pumb')
 
 
-def reject_booking(request,id):
-    booking=MechBooking.objects.get(id=id)
+def pumb_reject_booking(request,id):
+    booking=PetrolBooking.objects.get(id=id)
     booking.status = "Rejected"
     booking.save()
     subject="Booking Rejection Notification"
     message=f"Dear {booking.user.username} Your booking is being rejected because of other emergencies.. Please contact other mechanics....."
     email_from=settings.EMAIL_HOST_USER
     email_to=[booking.user.email]
-    send_mail(subject, message, email_from, email_to, fail_silently=True)
+    send_mail(subject, message, email_from, email_to,fail_silently=True)
     messages.success(request,'Booking rejected and send mail successfully.',extra_tags="success")
-    return redirect('bookings')
+    return redirect('bookings_pumb')
 
 
-def mech_update_status(request,id):
-    booking=MechBooking.objects.get(id=id)
+def pumb_update_status(request,id):
+    booking=PetrolBooking.objects.get(id=id)
     if booking.status == "Approved":
         subject="Booking Status Notification"
         message=f"Dear {booking.user.username}, Your assistance is on the way. Please wait patiently. Will reach in short. Please feel free to ontact us anytime for any help."
@@ -54,6 +52,7 @@ def mech_update_status(request,id):
         send_mail(subject, message, email_from, email_to, fail_silently=True)
         booking.status = "On the way"
         booking.save()
+       
     elif booking.status == "On the way":
         booking.status = "Working"
         booking.save()
@@ -65,8 +64,9 @@ def mech_update_status(request,id):
         send_mail(subject, message, email_from, email_to, fail_silently=True)
         booking.status = "Completed"
         booking.save()
+        
     else:
         booking.status="Approved"
         booking.save()
-    return redirect('bookings')
+    return redirect('bookings_pumb')
     
