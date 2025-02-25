@@ -30,6 +30,10 @@ urlpatterns=[
     path('edit_mechanic_profile',views.edit_mechanic_profile,name="edit_mechanic_profile"),
     path('petrolreg',views.petrolreg,name="petrolreg"),
     path('petrol_profile',views.petrol_profile,name="petrol_profile"),
+    path('add_fuel_detail', views.add_fuel_detail, name='add_fuel_detail'),
+    
+    path('view_fuel_details', views.view_fuel_details, name='view_fuel_details'),
+
     path('view_petrol',views.view_petrol,name="view_petrol"),
     path('edit_petrol_profile',views.edit_petrol_profile,name="edit_petrol_profile"),
     path('approve_mech/<int:id>/',views.approve_mech,name="approve_mech"),

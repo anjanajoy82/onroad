@@ -1,0 +1,20 @@
+{% include 'header.html' %}
+<h2>Fuel Details</h2>
+<table border="1">
+    <tr>
+        <th>Fuel Type</th>
+        <th>Price Per Liter</th>
+        <th>Available Quantity</th>
+        <th>Last Updated</th>
+    </tr>
+    {% for fuel in fuel_details %}
+    <tr>
+        <td>{{ fuel.fuel_name }}</td>
+        <td>{{ fuel.fuel_price }}</td>
+        <td>{{ fuel.available_quantity }} Liters</td>
+        <td>{{ fuel.updated_at }}</td>
+    </tr>
+    {% endfor %}
+</table>
+<a href="{% url 'add_fuel_detail' %}">Add More Fuel</a>
+{% include 'footer.html' %}

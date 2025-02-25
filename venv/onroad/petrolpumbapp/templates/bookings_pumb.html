@@ -3,52 +3,58 @@
 <link rel="stylesheet" href="{% static 'css/view_mech.css' %}">
 
 <body>
-    <div class="petrol-container">
-        {% if bookings %}
-            {% for booking in bookings %}
-                <div class="petrol-card">
-                    <div class="card-content">
-                        {% if booking.user.image %}
-                        <img src="{{ booking.user.image.url }}" alt="Profile Image" class="profile-img">
-                        {% else %}
-                        <img src="{% static 'images/new2.jpeg' %}" alt="Profile Image" class="profile-img">
-                        {% endif %}
-                        <!-- Petrol Pumb Details -->
-                        <h2>{{ booking.user.first_name }} {{ booking.user.last_name }}</h2>
-                        <p><strong>name:</strong> {{ booking.name }}</p>
-                        <p><strong>Description:</strong> {{ booking.description }}</p>
-                        <p><strong>Current Location:</strong><a href="{{ booking.current_loc }}">View Location</a></p>
-                        <p><strong>Vehicle Type:</strong> {{ booking.vehicle_type }}</p>
-                        <p><strong>Contact:</strong> {{ booking.user.contact }}</p>
-                        <p><strong>Fuel Type:</strong> {{ booking.fuel_type }}</p>
-                        <p><strong>Fuel Quantity:</strong> {{ booking.fuel_quantity }}</p>
-                        <p><strong>Request Time:</strong> {{ booking.request_time }}</p>
-                        <p><strong>Urgency:</strong> {{ booking.urgency }}</p>
-                        <p><strong>Payment Method:</strong> {{ booking.payment_method }}</p>
-                        {% if booking.status == "Booked"  %}
-                        <td>
-                            <a href="{% url 'pumb_approve_booking' booking.id %}" class="btn btn-success approve-btn" >Approve</a>
-                            <a href="{% url 'pumb_reject_booking' booking.id %}" class="btn btn-danger reject-btn">Reject</a>
-                        </td>
-                        {% elif booking.status == "Completed" %}
-                        <td>
-                            Completed
-                        </td>
-                        
-                        {% elif booking.status == "Rejected" %}
-                        <td>Rejected</td>
-                        {% else %}
-                        <td>
-                            {{ booking.status }}
-                            <a href="{% url 'pumb_update_status' booking.id %}" class="btn btn-success approve-btn" >Update Status</a>
-                        </td>
-                        {% endif %}
+    <div class="container mt-4">
+        <h2 class="text-center mb-4">Booking Requests</h2>
+        <div class="row">
+            {% if bookings %}
+                {% for booking in bookings %}
+                    <div class="col-md-6 col-lg-4 mb-4">
+                        <div class="card shadow-lg">
+                            <div class="card-body text-center">
+                                {% if booking.user.image %}
+                                    <img src="{{ booking.user.image.url }}" alt="Profile Image" class="profile-img rounded-circle mb-3" width="80">
+                                {% else %}
+                                    <img src="{% static 'images/new2.jpeg' %}" alt="Profile Image" class="profile-img rounded-circle mb-3" width="80">
+                                {% endif %}
+
+                                <h5 class="card-title">{{ booking.user.first_name }} {{ booking.user.last_name }}</h5>
+                                <p class="card-text"><strong>Name:</strong> {{ booking.name }}</p>
+                                <p class="card-text"><strong>Description:</strong> {{ booking.description }}</p>
+                                <p class="card-text"><strong>Current Location:</strong> 
+                                    <a href="{{ booking.current_loc }}" class="btn btn-link p-0">View Location</a>
+                                </p>
+                                <p class="card-text"><strong>Vehicle Type:</strong> {{ booking.vehicle_type }}</p>
+                                <p class="card-text"><strong>Contact:</strong> {{ booking.user.contact }}</p>
+                                <p class="card-text"><strong>Fuel Type:</strong> {{ booking.fuel_type }}</p>
+                                <p class="card-text"><strong>Fuel Quantity:</strong> {{ booking.fuel_quantity }}</p>
+                                <p class="card-text"><strong>Request Time:</strong> {{ booking.booked_at }}</p>
+                                <p class="card-text"><strong>Urgency:</strong> {{ booking.urgency }}</p>
+                                <p class="card-text"><strong>Payment Method:</strong> {{ booking.payment_method }}</p>
+
+                                {% if booking.status == "Booked" %}
+                                    <div class="mt-3">
+                                        <a href="{% url 'pumb_approve_booking' booking.id %}" class="btn btn-success btn-sm">Approve</a>
+                                        <a href="{% url 'pumb_reject_booking' booking.id %}" class="btn btn-danger btn-sm">Reject</a>
+                                    </div>
+                                {% elif booking.status == "Approved" %}
+                                    <div class="mt-3">
+                                        <a href="{% url 'assign_delivery_agent' booking.id %}" class="btn btn-primary btn-sm">Assign Delivery Agent</a>
+                                    </div>
+                                {% elif booking.status == "Assigned" %}
+                                    <p class="text-info mt-3"><strong>Assigned to:</strong> {{ booking.delivery_agent.username }}</p>
+                                {% else %}
+                                    <p class="text-success mt-3">
+                                        <strong>Assigned to:</strong> {{ booking.delivery_agent.username }} — {{ booking.status }}
+                                    </p>
+                                {% endif %}
+                            </div>
+                        </div>
                     </div>
-                </div>
-            {% endfor %}
-        {% else %}
-            <p class="no-users">No Bookings found.</p>
-        {% endif %}
+                {% endfor %}
+            {% else %}
+                <p class="text-center text-muted">No Bookings found.</p>
+            {% endif %}
+        </div>
     </div>
 </body>
 </html>

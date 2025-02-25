@@ -30,7 +30,7 @@ class PetrolForm(forms.ModelForm):
     
     class Meta:
         model=PetrolBooking
-        fields=['name','description','current_loc','vehicle_type','fuel_type','fuel_quantity','urgency','payment_method']
+        fields=['name','description','current_loc','vehicle_type','fuel_type','fuel_quantity','urgency']
         widgets={
             'name':forms.TextInput(attrs={'id':'name','name':'name'}),
             'description':forms.TextInput(attrs={'id':'description','name':'description','size':80, 'placeholder': 'Describe the issue in detail'}),
@@ -39,7 +39,6 @@ class PetrolForm(forms.ModelForm):
             'fuel_type':forms.TextInput(attrs={'id':'fuel_type','name':'fuel_type'}),
             'fuel_quantity':forms.TextInput(attrs={'id':'fuel_quantity','name':'fuel_quantity'}),
             'urgency':forms.TextInput(attrs={'id':'urgency','name':'urgency'}),
-            'payment_method':forms.TextInput(attrs={'id':'payment_method','name':'payment_method'}),
         }
         labels={
             'name':'NAME',
@@ -49,7 +48,6 @@ class PetrolForm(forms.ModelForm):
             'fuel_type':'FUEL TYPE',
             'fuel_quantity':'FUEL QUANTITY',
             'urgency':'URGENCY',
-            'payment_method':'PAYMENT METHOD',
 
 
             

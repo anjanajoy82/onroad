@@ -1,6 +1,6 @@
 {% load static %}
 {% include 'header.html' %}
-<link rel="stylesheet" href="{% static 'css/view_pumb_bookings.css' %}">
+<link rel="stylesheet" href="{% static 'css/view_mech.css' %}">
 
 <body>
     <div class="petrol-container">
@@ -8,30 +8,38 @@
             {% for booking in bookings %}
                 <div class="petrol-card">
                     <div class="card-content">
-                        {% if booking.petrol.image %}
-                        <img src="{{ booking.petrol.image.url }}" alt="Profile Image" class="profile-img">
+                        {% if booking.user.image %}
+                        <img src="{{ booking.user.image.url }}" alt="Profile Image" class="profile-img">
                         {% else %}
                         <img src="{% static 'images/new2.jpeg' %}" alt="Profile Image" class="profile-img">
                         {% endif %}
-                        <!-- Mechanic Details -->   
-                        <h2>{{ booking.petrol.pump_name }}</h2>
+                        <!-- Petrol Pumb Details -->
+                        <h2>{{ booking.user.first_name }} {{ booking.user.last_name }}</h2>
                         <p><strong>name:</strong> {{ booking.name }}</p>
                         <p><strong>Description:</strong> {{ booking.description }}</p>
                         <p><strong>Current Location:</strong><a href="{{ booking.current_loc }}">View Location</a></p>
                         <p><strong>Vehicle Type:</strong> {{ booking.vehicle_type }}</p>
-                        <p><strong>Contact:</strong> {{ booking.petrol.contact }}</p>
+                        <p><strong>Contact:</strong> {{ booking.user.contact }}</p>
                         <p><strong>Fuel Type:</strong> {{ booking.fuel_type }}</p>
                         <p><strong>Fuel Quantity:</strong> {{ booking.fuel_quantity }}</p>
                         <p><strong>Request Time:</strong> {{ booking.booked_at }}</p>
                         <p><strong>Urgency:</strong> {{ booking.urgency }}</p>
                         <p><strong>Payment Method:</strong> {{ booking.payment_method }}</p>
-                        <p><strong>Booking Status:</strong>{{ booking.status }}</p>
-                        <p>{{ booking. }}</p>
-                        </div>
-                        </div>
+                        {% if booking.status != "Delivered"  %}
+                        <td>
+                            {{ booking.status }}
+                            <a href="{% url 'pumb_update_status' booking.id %}" class="btn btn-success approve-btn" >Update Status</a>
+                        </td>
+                        {% else %}
+                        <td>
+                            {{ booking.status }}
+                        </td>
+                        {% endif %}
+                    </div>
+                </div>
             {% endfor %}
         {% else %}
-            <p class="no-users">No Bookings found.</p>
+            <p class="no-users">No Assignments found.</p>
         {% endif %}
     </div>
 </body>

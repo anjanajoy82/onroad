@@ -1,0 +1,29 @@
+{% load static %}
+{% include 'header.html' %}
+<link rel="stylesheet" href="{% static 'css/fuel_details.css' %}">
+
+<body>
+    <div class="fuel-container">
+        {% if fuels %}
+            {% for fuel in fuels %}
+                <div class="fuel-card">
+                    <div class="card-content">
+                        <h2>{{ fuel.petrol_pump.name }}</h2>
+                        <p><strong>Fuel Type:</strong> {{ fuel.fuel_type }}</p>
+                        <p><strong>Price Per Liter:</strong> ₹{{ fuel.price_per_liter }}</p>
+                        <p><strong>Available Quantity:</strong> {{ fuel.available_quantity }} Liters</p>
+                        <p><strong>Last Updated:</strong> {{ fuel.updated_at }}</p>
+                        <td>
+                            <a href="{% url 'edit_fuel_detail' fuel.id %}" class="btn btn-primary">Edit</a>
+                            <a href="{% url 'delete_fuel_detail' fuel.id %}" class="btn btn-danger">Delete</a>
+                        </td>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p class="no-fuel">No Fuel Details Available.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
+{% include 'footer.html' %}
