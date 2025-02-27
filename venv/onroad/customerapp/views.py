@@ -9,6 +9,7 @@ from django.conf import settings
 from django.core.mail import send_mail
 import secrets,string
 from onroadapp.models import *
+from petrolpumbapp.models import *
 
 
 # Create your views here.
@@ -23,10 +24,12 @@ def view_details(request,id):
     
 def view_pumbdetails(request,id):
     petrol=Register.objects.get(id=id)
-    return render(request,'view_pumbdetails.html',{'petrol':petrol})
+    fuel_details = FuelDetails.objects.filter(petrol_pump=petrol)
+    print(fuel_details)
+    return render(request,'view_pumbdetails.html',{'petrol':petrol,'fuel_details':fuel_details})
 
 def view_near_pump(request):
-    pumps=Register.objects.filter(usertype="petrol", is_approved=True)
+    pumps=Register.objects.filter(usertype="petrol", is_approved=True)  
     return render(request,'view_near_pumb.html',{'mechanics':pumps})
 
 def booking(request,id):
@@ -79,4 +82,30 @@ def view_pumb_bookings(request):
     user=request.user
     bookings=PetrolBooking.objects.filter(user=user)
     return render(request,'view_pumb_bookings.html',{'bookings':bookings})
+
+
+
+def add_mech_feedback(request,id):
+    booking= MechBooking.objects.get(id=id)
+    mech = booking.mechanic
+    mechanic = Register.objects.get(id=mech.id)
+    if request.method == "POST":
+        form = MechFeedbackForm(request.POST)
+        if form.is_valid():
+            feedback = form.save(commit=False)
+            feedback.mechanic = mechanic
+            feedback.booking = booking
+            feedback.user = request.user  # Assign logged-in user to feedback
+            feedback.save()
+            booking.f_status = True
+            booking.save()
+            return redirect('view_mech_bookings')  # Redirect after submission
+    else:
+        form = MechFeedbackForm()
+    return render(request, 'feedback_form.html', {'form': form})
+
+def view_mech_feedback(request,id):
+    booking = MechBooking.objects.get(id=id)
+    feedbacks = MechFeedback.objects.filter(booking=booking).order_by('-created_at')  # Retrieve all feedbacks
+    return render(request, 'view_feedback.html', {'feedbacks': feedbacks})
 

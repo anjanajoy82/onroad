@@ -125,3 +125,12 @@ def add_fuel_detail(request):
 def view_fuel_details(request):
     fuel_details = FuelDetails.objects.filter(petrol_pump=request.user)
     return render(request, 'view_fuel_detail.html', {'fuel_details': fuel_details})
+
+def delete_fuel(request,id):
+    fuel=FuelDetails.objects.get(id=id)
+    
+
+    fuel.delete()
+    
+    return redirect('view_fuel_details')
+

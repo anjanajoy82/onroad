@@ -55,3 +55,14 @@ class PetrolForm(forms.ModelForm):
         help_texts={
             'username':None
         }
+
+
+
+class MechFeedbackForm(forms.ModelForm):
+    class Meta:
+        model = MechFeedback
+        fields = ['message', 'rating']
+        widgets = {
+            'message': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Enter your feedback'}),
+            'rating': forms.Select(attrs={'class': 'form-control'}),
+        }

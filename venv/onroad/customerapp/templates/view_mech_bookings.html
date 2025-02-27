@@ -22,6 +22,16 @@
                         <p><strong>Contact:</strong> {{ booking.mechanic.contact }}</p>
                         <p><strong>Booking Status:</strong> {{ booking.status }}</p>
                         <p>Booked On: {{ booking.booked_at }}</p>
+                        {% if booking.status == "Completed" %}
+                            <td>
+                                <a href="{% url 'add_mech_feedback' booking.id %}" class="btn btn-success approve-btn" >Add Feedback</a>
+                        </td>
+                        {% endif %}
+                        {% if booking.f_status %}
+                        <td>
+                            <a href="{% url 'view_mech_feedback' booking.id %}" class="btn btn-warning approve-btn" >View Feedback</a>
+                    </td>
+                            {% endif %}
                     </div>
                 </div>
             {% endfor %}

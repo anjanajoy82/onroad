@@ -1,0 +1,21 @@
+{% load static %}
+{% include 'header.html' %}
+<link rel="stylesheet" href="{% static 'css/view_mech.css' %}">
+
+<div class="container">
+    <h2 class="text-center">User Feedback</h2>
+    {% if feedbacks %}
+        <ul class="list-group">
+            {% for feedback in feedbacks %}
+                <li class="list-group-item">
+                    <strong>{{ feedback.user.username }}</strong> ({{ feedback.rating }}⭐)
+                    <p>{{ feedback.message }}</p>
+                    <small>{{ feedback.created_at }}</small>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p class="text-center">No feedback available.</p>
+    {% endif %}
+</div>
+{% include 'footer.html' %}

@@ -12,6 +12,7 @@ class MechBooking(models.Model):
     vehicle_type=models.CharField(max_length=50,null=True)
     status=models.CharField(max_length=10,default="Pending")
     booked_at = models.DateTimeField(auto_now_add=True, null=True)
+    f_status = models.BooleanField(default=False)
 
 
 
@@ -43,3 +44,27 @@ class PetrolBooking(models.Model):
         return f"Petrol Booking for {self.name} - {self.fuel_type} ({self.status})"
 
 
+
+class MechFeedback(models.Model):
+    booking = models.ForeignKey(MechBooking, on_delete=models.CASCADE,related_name="booking")  # Linking feedback to a user
+    user = models.ForeignKey(Register, on_delete=models.CASCADE,related_name="user_feed")  # Linking feedback to a user
+    mechanic = models.ForeignKey(Register,on_delete=models.CASCADE,null=True,related_name="mech_feedback")
+    message = models.TextField(max_length=500,null=True)  # Feedback content
+    rating = models.IntegerField(choices=[(i, str(i)) for i in range(1, 6)], default=5)  # Rating from 1 to 5
+    created_at = models.DateTimeField(auto_now_add=True)  # Timestamp for when feedback was created
+
+    def __str__(self):
+        return f"Feedback from {self.user.username} - {self.rating} stars"
+
+
+
+class PetrolFeedback(models.Model):
+    booking = models.ForeignKey(PetrolBooking, on_delete=models.CASCADE,related_name="booking")  # Linking feedback to a user
+    user = models.ForeignKey(Register, on_delete=models.CASCADE,related_name="user_feedback")  # Linking feedback to a user
+    petrol = models.ForeignKey(Register,on_delete=models.CASCADE,null=True,related_name="petrol_feedback")
+    message = models.TextField(max_length=500,null=True)  # Feedback content
+    rating = models.IntegerField(choices=[(i, str(i)) for i in range(1, 6)], default=5)  # Rating from 1 to 5
+    created_at = models.DateTimeField(auto_now_add=True)  # Timestamp for when feedback was created
+
+    def __str__(self):
+        return f"Feedback from {self.user.username} - {self.rating} stars"

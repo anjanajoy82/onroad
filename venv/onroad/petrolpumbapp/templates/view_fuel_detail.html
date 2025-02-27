@@ -1,14 +1,18 @@
+{% load static %}
 {% include 'header.html' %}
-<h2>Fuel Details</h2>
+<link rel="stylesheet" href="{% static 'css/fueldetails.css' %}">
+<h2>FUEL DETAILS</h2>
 <table border="1">
     <tr>
         <th>Fuel Type</th>
-        <th>Price Per Liter</th>
+        <th>Price Per Liter</th>    
+        <th>Actions</th>    
     </tr>
     {% for fuel in fuel_details %}
     <tr>
         <td>{{ fuel.fuel_name }}</td>
         <td>{{ fuel.fuel_price }} / Litre</td>
+        <td><a href="{% url 'delete_fuel' fuel.id %}" class="btn btn-danger">Delete</a></td>
         {% empty %}
     <td colspan="2">No Fuel details available</td>
     </tr>

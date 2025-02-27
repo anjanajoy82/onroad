@@ -9,5 +9,6 @@ urlpatterns=[
     path('pumbbooking/<int:id>/',views.pumb_booking,name="pumbbooking"),
     path('view_mech_bookings',views.view_mech_bookings,name="view_mech_bookings"),
     path('view_pumb_bookings',views.view_pumb_bookings,name="view_pumb_bookings"),
-    
+    path('add_mech_feedback/<int:id>/', views.add_mech_feedback, name='add_mech_feedback'),
+    path('view_mech_feedback/<int:id>/', views.view_mech_feedback, name='view_mech_feedback'),
 ]

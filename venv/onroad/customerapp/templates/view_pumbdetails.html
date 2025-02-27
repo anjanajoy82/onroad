@@ -20,7 +20,12 @@
     
     
     <p id="Location"><a href="{{ petrol.location }}">View Location Map </a></p>
-    
+    {% if fuel_details %}
+    <h4>Fuel Details: </h4>
+    {% for fuel in fuel_details %}
+    <li class="text-info">{{ fuel.fuel_name }} @ {{ fuel.fuel_price }}</li>
+    {% endfor %}
+    {% endif %}
 
 
 

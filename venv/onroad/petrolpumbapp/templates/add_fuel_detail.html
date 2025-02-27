@@ -1,4 +1,6 @@
+{% load static %}
 {% include 'header.html' %}
+<link rel="stylesheet" href="{% static 'css/view_mech.css' %}">
 <h2>Add Fuel Detail</h2>
 <form method="POST">
     {% csrf_token %}
