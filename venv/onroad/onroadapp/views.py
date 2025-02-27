@@ -412,19 +412,3 @@ def agent_profile(request):
 # def view_near_mech(request):
 #     mechanics=Register.objects.filter(usertype="mechanic", is_approved=True)
 #     return render(request,'view_near_mech.html',{'mechanics':mechanics})
-def add_fuel_detail(request):
-    if request.method == "POST":
-        form = FuelForm(request.POST)
-        if form.is_valid():
-            fuel_detail = form.save(commit=False)
-            fuel_detail.petrol = request.user  # Assign current petrol pump user
-            fuel_detail.save()
-            return redirect('view_fuel_detail')  # Redirect after adding fuel
-    else:
-        form = FuelForm()
-    return render(request, 'add_fuel_detail.html', {'form': form})
-
-
-def view_fuel_details(request):
-    fuel_details = FuelDetail.objects.filter(petrol=request.user)
-    return render(request, 'view_fuel_detail.html', {'fuel_details': fuel_details})

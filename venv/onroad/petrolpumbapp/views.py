@@ -4,6 +4,7 @@ from django.contrib import messages
 from django.contrib.auth.hashers import make_password
 from customerapp.models import *
 from .forms import *
+from .models import *
 from django.conf import settings
 from django.core.mail import send_mail
 import secrets,string
@@ -113,14 +114,14 @@ def add_fuel_detail(request):
         form = FuelForm(request.POST)
         if form.is_valid():
             fuel_detail = form.save(commit=False)
-            fuel_detail.petrol = request.user  # Assign current petrol pump user
+            fuel_detail.petrol_pump = request.user  # Assign current petrol pump user
             fuel_detail.save()
-            return redirect('view_fuel_detail')  # Redirect after adding fuel
+            return redirect('view_fuel_details')  # Redirect after adding fuel
     else:
         form = FuelForm()
     return render(request, 'add_fuel_detail.html', {'form': form})
 
 
 def view_fuel_details(request):
-    fuel_details = FuelDetail.objects.filter(petrol=request.user)
+    fuel_details = FuelDetails.objects.filter(petrol_pump=request.user)
     return render(request, 'view_fuel_detail.html', {'fuel_details': fuel_details})

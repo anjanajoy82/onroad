@@ -25,3 +25,4 @@ class Reset(models.Model):
     otp = models.CharField(max_length=6, null=True)
     user = models.ForeignKey(Register, on_delete=models.CASCADE,null=True)
     otp_created_at = models.DateTimeField(auto_now_add =True)
+
