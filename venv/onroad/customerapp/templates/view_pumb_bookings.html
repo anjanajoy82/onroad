@@ -26,9 +26,19 @@
                         <p><strong>Urgency:</strong> {{ booking.urgency }}</p>
                         <p><strong>Payment Method:</strong> {{ booking.payment_method }}</p>
                         <p><strong>Booking Status:</strong>{{ booking.status }}</p>
-                        <p>{{ booking. }}</p>
-                        </div>
-                        </div>
+                        <p>Booked On: {{ booking.booked_at }}</p>
+                        {% if booking.status == "Delivered" %}
+                        <td>
+                            <a href="{% url 'add_petrol_feedback' booking.id %}" class="btn btn-success approve-btn" >Add Feedback</a>
+                        </td>
+                        {% endif %}
+                        {% if booking.status %}
+                        <td>
+                            <a href="{% url 'view_petrol_feedback' booking.id %}" class="btn btn-warning approve-btn" >View Feedback</a>
+                        </td>
+                        {% endif %}
+                    </div>
+                </div>
             {% endfor %}
         {% else %}
             <p class="no-users">No Bookings found.</p>

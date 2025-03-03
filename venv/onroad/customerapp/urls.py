@@ -11,4 +11,6 @@ urlpatterns=[
     path('view_pumb_bookings',views.view_pumb_bookings,name="view_pumb_bookings"),
     path('add_mech_feedback/<int:id>/', views.add_mech_feedback, name='add_mech_feedback'),
     path('view_mech_feedback/<int:id>/', views.view_mech_feedback, name='view_mech_feedback'),
+    path('add_petrol_feedback/<int:id>/', views.add_petrol_feedback, name='add_petrol_feedback'),
+    path('view_petrol_feedback/<int:id>/', views.view_petrol_feedback, name='view_petrol_feedback'),
 ]

@@ -100,11 +100,6 @@ def delivery_agent_bookings(request):
 
     return render(request, 'delivery_booking.html', {'bookings': bookings})
 
-
-
-
-
-
 def petrol_pump_dashboard(request):
     return render(request, 'petrol_pump_dashboard.html')
 
@@ -133,4 +128,8 @@ def delete_fuel(request,id):
     fuel.delete()
     
     return redirect('view_fuel_details')
+def view_petrol_feedbacks(request):
+    id=request.user.id
+    feedbacks = PetrolFeedback.objects.filter(petrol=id).order_by('-created_at')  # Retrieve all feedbacks
+    return render(request, 'view_feedbacks.html', {'feedbacks': feedbacks})
 

@@ -19,5 +19,7 @@ urlpatterns=[
     
     path('view_fuel_details', views.view_fuel_details, name='view_fuel_details'),
     path('delete_fuel/<int:id>/', views.delete_fuel, name='delete_fuel'),
+    path('view_petrol_feedbacks/', views.view_petrol_feedbacks, name='view_petrol_feedbacks'),
+
 
 ]

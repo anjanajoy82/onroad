@@ -70,3 +70,7 @@ def mech_update_status(request,id):
         booking.save()
     return redirect('bookings')
     
+def view_mech_feedbacks(request):
+    id=request.user.id
+    feedbacks = MechFeedback.objects.filter(mechanic=id).order_by('-created_at')  # Retrieve all feedbacks
+    return render(request, 'view_feedbacks.html', {'feedbacks': feedbacks})

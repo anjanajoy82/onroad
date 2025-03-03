@@ -66,3 +66,12 @@ class MechFeedbackForm(forms.ModelForm):
             'message': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Enter your feedback'}),
             'rating': forms.Select(attrs={'class': 'form-control'}),
         }
+
+class PetrolFeedbackForm(forms.ModelForm):
+    class Meta:
+        model = PetrolFeedback
+        fields = ['message', 'rating']
+        widgets = {
+            'message': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Enter your feedback'}),
+            'rating': forms.Select(attrs={'class': 'form-control'}),
+        }

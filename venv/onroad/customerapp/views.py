@@ -109,3 +109,26 @@ def view_mech_feedback(request,id):
     feedbacks = MechFeedback.objects.filter(booking=booking).order_by('-created_at')  # Retrieve all feedbacks
     return render(request, 'view_feedback.html', {'feedbacks': feedbacks})
 
+def add_petrol_feedback(request,id):
+    booking= PetrolBooking.objects.get(id=id)
+    pet = booking.petrol
+    mechanic = Register.objects.get(id=pet.id)
+    if request.method == "POST":
+        form = PetrolFeedbackForm(request.POST)
+        if form.is_valid():
+            feedback = form.save(commit=False)
+            feedback.petrol = pet
+            feedback.booking = booking
+            feedback.user = request.user  # Assign logged-in user to feedback
+            feedback.save()
+            booking.status = True
+            booking.save()
+            return redirect('view_pumb_bookings')  # Redirect after submission
+    else:
+        form = MechFeedbackForm()
+    return render(request, 'feedback_form.html', {'form': form})
+
+def view_petrol_feedback(request,id):
+    booking = PetrolBooking.objects.get(id=id)
+    feedbacks = PetrolFeedback.objects.filter(booking=booking).order_by('-created_at')  # Retrieve all feedbacks
+    return render(request, 'view_petrolfeedback.html', {'feedbacks': feedbacks})
