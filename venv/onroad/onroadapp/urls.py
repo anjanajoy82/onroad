@@ -37,4 +37,6 @@ urlpatterns=[
     path('add_delivery_agent',views.deliveryagentreg,name="add_delivery_agent"),
     path('view_delivery_agents',views.view_agent,name="view_delivery_agents"),
     path('agent_profile',views.agent_profile,name="agent_profile"),
+    path('admin_mech_feedbacks', views.admin_mech_feedbacks, name='admin_mech_feedbacks'),
+    path('admin_petrol_feedbacks', views.admin_petrol_feedbacks, name='admin_petrol_feedbacks'),
 ]

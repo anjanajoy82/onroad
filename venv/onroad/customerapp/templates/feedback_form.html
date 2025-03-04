@@ -6,8 +6,8 @@
 
 <body>
 
-    <div class="feedback-container">
-        <h2 class="text-center">SUBMIT FEEDBACK</h2>
+    <div class="add-feedback-container">
+        <h2 class="add-text-center">SUBMIT FEEDBACK</h2>
         <form method="POST" class="feedback-form">
             {% csrf_token %}
             {{ form.as_p }}

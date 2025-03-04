@@ -2,12 +2,12 @@
 {% include 'header.html' %}
 <link rel="stylesheet" href="{% static 'css/feedback.css' %}">
 
-<div class="container">
-    <h1 class="text-center">PETROL PUMP FEEDBACK</h1>
+<div class="feedback-container">
+    <h1 class="feedback-text-center">PETROL PUMP FEEDBACK</h1>
     {% if feedbacks %}
-        <ul class="list-group">
+        <ul class="feedback-list-group">
             {% for feedback in feedbacks %}
-                <li class="list-group-item">
+                <li class="feedback-list-group-item">
                     <strong>{{ feedback.user.username }}</strong> ({{ feedback.rating }}⭐)
                     <p><strong>Delivery Agent:</strong> {{ feedback.delivery_agent.name }}</p>
                     <p>{{ feedback.message }}</p>
@@ -16,7 +16,7 @@
             {% endfor %}
         </ul>
     {% else %}
-        <p class="text-center">No feedback available.</p>
+        <p class="feedback-text-center">No feedback available.</p>
     {% endif %}
 </div>
 

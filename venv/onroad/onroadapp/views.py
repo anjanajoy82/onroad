@@ -7,6 +7,7 @@ from .forms import *
 from django.conf import settings
 from django.core.mail import send_mail
 import secrets,string
+from customerapp.models import *
 
 
 def index(request):
@@ -412,3 +413,13 @@ def agent_profile(request):
 # def view_near_mech(request):
 #     mechanics=Register.objects.filter(usertype="mechanic", is_approved=True)
 #     return render(request,'view_near_mech.html',{'mechanics':mechanics})
+
+
+def admin_mech_feedbacks(request):
+    feedbacks = MechFeedback.objects.all().order_by('-created_at')  # Retrieve all feedbacks
+    print(feedbacks)
+    return render(request, 'view_feedbackss.html', {'feedbacks': feedbacks})
+def admin_petrol_feedbacks(request):
+    feedbacks = PetrolFeedback.objects.all().order_by('-created_at')  # Retrieve all feedbacks
+    print(feedbacks)
+    return render(request, 'view_feedbackss.html', {'feedbacks': feedbacks})

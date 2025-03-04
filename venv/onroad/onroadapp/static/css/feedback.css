@@ -1,5 +1,5 @@
 /* Ensure styles only apply to feedback form */
-.feedback-container {
+.add-feedback-container {
     width: 50%;
     margin: 50px auto;
     background: rgb(241, 218, 180);
@@ -8,30 +8,30 @@
     box-shadow: 0px 0px 10px rgba(8, 159, 65, 0.1);
 }
 
-.feedback-container h2 {
+.add-feedback-container h2 {
     text-align: center;
     color: #1c1501;
     margin-bottom: 20px;
 }
 
-.feedback-form {
+.add-feedback-form {
     display: flex;
     flex-direction: column;
 }
 
-.feedback-form p {
+.add-feedback-form p {
     margin-bottom: 15px;
 }
 
-.feedback-form label {
+.add-feedback-form label {
     font-weight: bold;
     margin-bottom: 5px;
     display: block;
 }
 
-.feedback-form input,
-.feedback-form textarea,
-.feedback-form select {
+.add-feedback-form input,
+.add-feedback-form textarea,
+.add-feedback-form select {
     width: 100%;
     padding: 10px;
     border: 1px solid #b31616;
@@ -39,12 +39,12 @@
     font-size: 16px;
 }
 
-.feedback-form textarea {
+.add-feedback-form textarea {
     resize: vertical;
     min-height: 100px;
 }
 
-.feedback-form button {
+.add-feedback-form button {
     background-color: #0f0f0f;
     color: white;
     padding: 10px;
@@ -55,7 +55,7 @@
     transition: background 0.3s ease;
 }
 
-.feedback-form button:hover {
+.add-feedback-form button:hover {
     background-color: #110000;
 }
 
@@ -75,7 +75,7 @@ body {
     padding: 0;
 }
 
-.container {
+.feedback-container {
     width: 60%;
     margin: 50px auto;
     background: white;
@@ -91,12 +91,12 @@ h2 {
     font-size: 24px;
 }
 
-.list-group {
+.feedback-list-group {
     list-style: none;
     padding: 0;
 }
 
-.list-group-item {
+.feedback-list-group-item {
     background: #fff;
     padding: 15px;
     margin-bottom: 10px;
@@ -106,22 +106,22 @@ h2 {
     transition: transform 0.2s ease-in-out;
 }
 
-.list-group-item:hover {
+.feedback-list-group-item:hover {
     transform: scale(1.02);
 }
 
-.list-group-item strong {
+.feedback-list-group-item strong {
     font-size: 18px;
     color: #266943;
 }
 
-.list-group-item p {
+.feedback-list-group-item p {
     font-size: 16px;
     color: #555;
     margin: 5px 0;
 }
 
-.list-group-item small {
+.feedback-list-group-item small {
     display: block;
     font-size: 14px;
     color: #888;
@@ -129,30 +129,31 @@ h2 {
 }
 
 /* No feedback message */
-.text-center {
+
     
-    .text-center {
-        font-weight: bold;  /* Makes text bold */
-        font-family: 'Poppins', sans-serif;  /* Change font style */
-        font-size: 26px;  /* Increase font size */
-        color: #343a40;  /* Dark gray for better visibility */
-        text-transform: uppercase;  /* Makes text uppercase */
-        letter-spacing: 1.5px;  /* Adds spacing between letters */
-    }
-      /* Adds spacing between letters */
-    
-    
-    
+.feedback-text-center {
+    font-weight: bold;  /* Makes text bold */
+    font-family: 'Poppins', sans-serif;  /* Change font style */
+    font-size: 26px;  /* Increase font size */
+    color: #343a40;  /* Dark gray for better visibility */
+    text-transform: uppercase;  /* Makes text uppercase */
+    letter-spacing: 1.5px;
+    text-align: center;  /* Adds spacing between letters */
 }
+    /* Adds spacing between letters */
+    
+    
+    
+
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    .container {
+    .feedback-container {
         width: 90%;
         padding: 15px;
     }
 
-    .list-group-item {
+    .feedback-list-group-item {
         padding: 10px;
     }
 

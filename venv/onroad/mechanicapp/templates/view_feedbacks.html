@@ -2,12 +2,12 @@
 {% include 'header.html' %}
 <link rel="stylesheet" href="{% static 'css/feedback.css' %}">
 
-<div class="container">
-    <h1 class="text-center">USER FEEDBACK</h1>
+<div class="feedback-container">
+    <h1 class="feedback-text-center">USER FEEDBACK</h1>
     {% if feedbacks %}
-        <ul class="list-group">
+        <ul class="feedback-list-group">
             {% for feedback in feedbacks %}
-                <li class="list-group-item">
+                <li class="feedback-list-group-item">
                     <strong>{{ feedback.user.username }}</strong> ({{ feedback.rating }}⭐)
                     <p>{{ feedback.message }}</p>
                     <small>{{ feedback.created_at }}</small>
@@ -15,7 +15,7 @@
             {% endfor %}
         </ul>
     {% else %}
-        <p class="text-center">No feedback available.</p>
+        <p class="feedback-text-center">No feedback available.</p>
     {% endif %}
 </div>
 {% include 'footer.html' %}
