@@ -402,7 +402,7 @@ def deliveryagentreg(request):
     return render(request,'mechreg.html',{'form':form,'title':'REGISTER DELIVERY AGENT'})
 
 def view_agent(request):
-    agents=Register.objects.filter(usertype="deliveryagent")
+    agents=Register.objects.filter(usertype="deliveryagent",pump_id=request.user.id)
     return render(request,'view_delivery_agents.html',{'agents':agents})
 
 def agent_profile(request):

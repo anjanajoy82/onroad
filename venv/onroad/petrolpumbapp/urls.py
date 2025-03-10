@@ -18,7 +18,9 @@ urlpatterns=[
     path('add_fuel_detail', views.add_fuel_detail, name='add_fuel_detail'),
     
     path('view_fuel_details', views.view_fuel_details, name='view_fuel_details'),
+    path('add_fuel_details', views.add_fuel_details, name='add_fuel_details'),
     path('delete_fuel/<int:id>/', views.delete_fuel, name='delete_fuel'),
+    path('fuel_types/<int:id>', views.fuel_types, name='fuel_types'),
     path('view_petrol_feedbacks/', views.view_petrol_feedbacks, name='view_petrol_feedbacks'),
 
 

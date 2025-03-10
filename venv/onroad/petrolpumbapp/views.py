@@ -116,6 +116,18 @@ def add_fuel_detail(request):
         form = FuelForm()
     return render(request, 'add_fuel_detail.html', {'form': form})
 
+def add_fuel_details(request):
+    if request.method == "POST":
+        form = FuelForm(request.POST)
+        if form.is_valid():
+            fuel_detail = form.save(commit=False)
+            fuel_detail.petrol_pump = request.user  # Assign current petrol pump user
+            fuel_detail.save()
+            return redirect('view_fuel_details')  # Redirect after adding fuel
+    else:
+        form = FuelForm()
+    return render(request, 'add_fuel_detail.html', {'form': form})
+
 
 def view_fuel_details(request):
     fuel_details = FuelDetails.objects.filter(petrol_pump=request.user)
@@ -123,13 +135,31 @@ def view_fuel_details(request):
 
 def delete_fuel(request,id):
     fuel=FuelDetails.objects.get(id=id)
-    
-
     fuel.delete()
-    
     return redirect('view_fuel_details')
+
+
+def fuel_types(request,id):
+    fuel=FuelDetails.objects.get(id=id)
+    if request.method == "POST":
+        form = Fuel_TypesForm(request.POST,request.FILES)
+        if form.is_valid():
+            fuel_detail = form.save(commit=False)
+            fuel_detail.petrol_pump = fuel  # Assign current petrol pump user
+            fuel_detail.save()
+            return redirect('view_fuel_details')  # Redirect after adding fuel
+        else:
+            print(form.errors)
+    else:
+        form = Fuel_TypesForm()
+    return render(request, 'add_fuel_detail.html', {'form': form})
+
+
+
 def view_petrol_feedbacks(request):
-    id=request.user.id
+    id=request.user.id 
     feedbacks = PetrolFeedback.objects.filter(petrol=id).order_by('-created_at')  # Retrieve all feedbacks
     return render(request, 'view_feedbacks.html', {'feedbacks': feedbacks})
+
+
 

@@ -23,3 +23,28 @@ class FuelForm(forms.ModelForm):
         help_texts={
             'username':None
         }
+
+
+
+class Fuel_TypesForm(forms.ModelForm):
+    
+    class Meta:
+        model=FuelTypes
+        fields=['fuel_types','image']
+        widgets={
+            'fuel_types':forms.TextInput(attrs={'id':'fuel-types','name':'fuel_types'}),
+            # 'image':forms.TextInput(attrs={'id':'image','name':'image'}),
+            
+        }
+        labels={
+            'fuel_types':'FUEL TYPES',
+            'image':'image',
+
+
+            
+        }
+        help_texts={
+            'username':None
+        }
+
+

@@ -1,10 +1,10 @@
 {% load static %}
 {% include 'header.html' %}
-<link rel="stylesheet" href="{% static 'css/view_mech.css' %}">
-<h2>Add Fuel Detail</h2>
-<form method="POST">
+<link rel="stylesheet" href="{% static 'css/view_fuel_details.css' %}">
+<h2>ADD FUEL DETAILS</h2>
+<form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Save</button>
+    <button type="submit">SAVE</button>
 </form>
 {% include 'footer.html' %}

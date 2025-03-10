@@ -4,15 +4,14 @@
 <h2>FUEL DETAILS</h2>
 <table border="1">
     <tr>
-        <th>Fuel Type</th>
-        <th>Price Per Liter</th>    
-        <th>Actions</th>
-        <th>Actions</th>
+        <th>Fuel Types</th>
+        <th> Image</th>    
+        
     </tr>
     {% for fuel in fuel_details %}
     <tr>
-        <td>{{ fuel.fuel_name }}</td>
-        <td>{{ fuel.fuel_price }} / Litre</td>
+        <td>{{ fuel.fuel_types }}</td>
+        <td>{{ fuel.image }} / Litre</td>
         <td>
             <a href="{% url 'fuel_types' fuel.id %}" class="btn btn-danger">Add New Types</a>
             <a href="{% url 'fuel_types' fuel.id %}" class="btn btn-danger">View Types</a>
