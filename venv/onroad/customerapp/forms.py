@@ -37,6 +37,7 @@ class PetrolForm(forms.ModelForm):
             'current_loc':forms.URLInput(attrs={'id':'current_loc','name':'current_loc','placeholder': 'Location URL '}),
             'vehicle_type':forms.TextInput(attrs={'id':'vehicle_type','name':'vehicle_type'}),
             'fuel_type':forms.TextInput(attrs={'id':'fuel_type','name':'fuel_type'}),
+           
             'fuel_quantity':forms.TextInput(attrs={'id':'fuel_quantity','name':'fuel_quantity'}),
             'urgency':forms.TextInput(attrs={'id':'urgency','name':'urgency'}),
         }
@@ -46,6 +47,7 @@ class PetrolForm(forms.ModelForm):
             'current_loc':'CURRENT LOCATION',
             'vehicle_type':'VEHICLE TYPE',
             'fuel_type':'FUEL TYPE',
+            
             'fuel_quantity':'FUEL QUANTITY',
             'urgency':'URGENCY',
 

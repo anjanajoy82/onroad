@@ -15,6 +15,7 @@ from petrolpumbapp.models import *
 # Create your views here.
 
 def view_near_mech(request):
+    
     mechanics=Register.objects.filter(usertype="mechanic", is_approved=True)
     return render(request,'view_near_mech.html',{'mechanics':mechanics})
 

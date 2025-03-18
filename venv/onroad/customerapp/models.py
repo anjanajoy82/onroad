@@ -28,6 +28,7 @@ class PetrolBooking(models.Model):
     vehicle_type = models.CharField(max_length=50,null=True)
     # Additional fields specific to petrol booking
     fuel_type = models.CharField(max_length=50, null=True)
+   
     fuel_quantity = models.DecimalField(max_digits=5, decimal_places=2, null=True)  # Liters or Gallons
     booked_at = models.DateTimeField(auto_now_add=True,null=True)  # Preferred time for delivery
     urgency = models.CharField(max_length=10,default='not urgent')

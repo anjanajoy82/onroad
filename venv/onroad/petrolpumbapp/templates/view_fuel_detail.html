@@ -4,20 +4,23 @@
 <h2>FUEL DETAILS</h2>
 <table border="1">
     <tr>
+        <th>Fuel Name</th>
         <th>Fuel Type</th>
-        <th>Price Per Liter</th>    
+        <th>Price Per Liter</th>
+        <th>image</th>    
         <th>Actions</th>
-        <th>Actions</th>
+       
     </tr>
-    {% for fuel in fuel_details %}
+    {% for fuel in fuel_detail %}
     <tr>
         <td>{{ fuel.fuel_name }}</td>
+        <td>{{ fuel.fuel_types }}</td>
         <td>{{ fuel.fuel_price }} / Litre</td>
-        <td>
-            <a href="{% url 'fuel_types' fuel.id %}" class="btn btn-danger">Add New Types</a>
-            <a href="{% url 'fuel_types' fuel.id %}" class="btn btn-danger">View Types</a>
-        
-        </td>
+        {% if fuel.image %}
+        <td><img src="{{ fuel.image.url }}" alt="{{ fuel.fuel_name }}"></td>
+        {% else %}
+        <td>No image</td>
+        {% endif %}
         <td><a href="{% url 'delete_fuel' fuel.id %}" class="btn btn-danger">Delete</a></td>
         
         {% empty %}

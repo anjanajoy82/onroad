@@ -60,6 +60,8 @@ def reg(request):
         form=RegisterForm(request.POST)
         print(form)
         if form.is_valid():
+
+            
             
             # checking the email exists or not
             email = form.cleaned_data['email']

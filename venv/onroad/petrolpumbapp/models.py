@@ -6,16 +6,12 @@ class FuelDetails(models.Model):
     fuel_name = models.CharField(max_length=50)
     fuel_price = models.DecimalField(max_digits=6, decimal_places=2)
      
-    
+    fuel_types = models.CharField(max_length=50,null=True)
+    image=models.ImageField(upload_to='uploads/',null=True)
+     
 
     def __str__(self):
         return f"{self.fuel_name} - {self.petrol_pump.first_name} {self.petrol_pump.last_name}"
-class FuelTypes(models.Model):
-    petrol_pump = models.ForeignKey(FuelDetails, on_delete=models.CASCADE, related_name="fuel_details")
-    fuel_types = models.CharField(max_length=50)
-    image=models.ImageField(upload_to='uploads/',null=True)
-     
-    
 
     
 
